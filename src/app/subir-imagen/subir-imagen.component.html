@@ -1,0 +1,8 @@
+<div class="wrapper">
+    <div class="position-relative">
+        <h3>Subir imagen</h3>
+        <input class="input-file" (change)="obtenerIMG($event)" type="file">
+        <div class="preview-img" *ngIf="visualizarIMG">
+        </div>
+    </div>  
+</div>
