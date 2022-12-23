@@ -26,7 +26,7 @@ export class SubirImagenComponent implements OnInit{
   }
 
 
-  extraerBase64 = async ($event: any) => new Promise((resolve, reject) => {
+  extraerBase64 = async ($event: any) => new Promise((resolve, reject):any => {
     try {
       const obtURL = window.URL.createObjectURL($event);
       const image = this.sanitizer.bypassSecurityTrustUrl(obtURL);
