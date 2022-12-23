@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { RestService } from './../rest.service';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Component({
   selector: 'app-subir-imagen',
@@ -20,6 +21,7 @@ export class SubirImagenComponent implements OnInit{
     const img = event.target.files[0]
     this.extraerBase64(img).then((imagen: any) => {
       this.visualizarIMG = imagen.base;
+      console.log(imagen)
     })
     this.archivos.push(img)
 
@@ -47,5 +49,25 @@ export class SubirImagenComponent implements OnInit{
       return null;
     }
   })
+
+  postIMG(): any {
+    console.log('subir img')
+    try {
+      const formularioDeDatos = new FormData();
+      this.archivos.forEach(archivo => {
+        formularioDeDatos.append('files', archivo)
+      })
+      let heades = new HttpHeaders()
+      this.rest.post(`https://apitest-bt.herokuapp.com/api/v1/imagenes`, formularioDeDatos)
+        .subscribe(res => {
+          console.log('Respuesta del servidor', res);
+        }, () => {
+          alert('Error');
+        })
+    } catch (e) {
+      console.log('ERROR', e);
+
+    }
+  }
 
 }

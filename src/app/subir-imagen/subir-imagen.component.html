@@ -4,5 +4,11 @@
         <input class="input-file" (change)="obtenerIMG($event)" type="file">
         <div class="preview-img" *ngIf="visualizarIMG">
         </div>
+
+        <div class="wrapper-button" *ngIf="visualizarIMG">
+            <button type="button" class="button"  (click)="postIMG()">
+                {{'insertar imagen'}}
+            </button>
+        </div>
     </div>  
 </div>
